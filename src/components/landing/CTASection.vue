@@ -4,10 +4,10 @@ import { Calendar, ArrowRight } from 'lucide-vue-next'
 
 <template>
   <section id="cta" class="py-24 bg-slate-50 relative overflow-hidden">
-    <div class="max-w-5xl mx-auto px-6">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
       <div
         v-motion
-        class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-12 md:p-16 shadow-2xl overflow-hidden"
+        class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-8 sm:p-12 md:p-16 shadow-2xl overflow-hidden"
         :initial="{ opacity: 0, scale: 0.95 }"
         :visible-once="{ opacity: 1, scale: 1 }"
         :duration="800"
@@ -23,13 +23,13 @@ import { Calendar, ArrowRight } from 'lucide-vue-next'
             :duration="600"
             :delay="200"
           >
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
               Ready to Maximize Your
               <span class="bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent">
                 Marketing Efficiency?
               </span>
             </h2>
-            <p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p class="text-lg sm:text-xl text-slate-300 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
               Book a 15-minute strategy call. No fluff, no sales pitch—just a clear roadmap on how
               we can scale your business.
             </p>
@@ -44,7 +44,7 @@ import { Calendar, ArrowRight } from 'lucide-vue-next'
           >
             <a
               href="mailto:ververde_ltd@yahoo.com"
-              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-lg font-medium transition-all bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-10 py-7 shadow-2xl shadow-orange-500/30 hover:shadow-3xl hover:shadow-orange-500/40 hover:scale-105"
+              class="inline-flex w-full sm:w-auto items-center justify-center gap-2 whitespace-nowrap rounded-full text-base sm:text-lg font-medium transition-all bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 sm:px-10 py-5 sm:py-7 shadow-2xl shadow-orange-500/30 hover:shadow-3xl hover:shadow-orange-500/40 hover:scale-105"
             >
               <Calendar class="mr-3 w-6 h-6" />
               Book My Strategy Call
@@ -54,13 +54,14 @@ import { Calendar, ArrowRight } from 'lucide-vue-next'
 
           <div
             v-motion
-            class="flex flex-wrap justify-center items-center gap-8 mt-12 pt-12 border-t border-slate-700"
+            class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-10 sm:mt-12 pt-10 sm:pt-12 text-sm sm:text-base"
             :initial="{ opacity: 0 }"
             :visible-once="{ opacity: 1 }"
             :duration="600"
             :delay="600"
           >
-            <div v-for="item in ['15-min call', 'No commitment', 'Free roadmap', 'UK-based team']" :key="item" class="flex items-center gap-2 text-slate-300">
+            <div class="col-span-full h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+            <div v-for="item in ['15-min call', 'No commitment', 'Free roadmap', 'UK-based team']" :key="item" class="flex items-center justify-center sm:justify-start gap-2 text-slate-300">
               <div class="w-2 h-2 rounded-full bg-green-400" />
               <span>{{ item }}</span>
             </div>

@@ -199,6 +199,81 @@
 }
 
 @layer utilities {
+  .whyus-embla {
+    overflow: hidden;
+    margin: 0 -1.25rem;
+    padding: 0.25rem 1.25rem 0.5rem;
+  }
+
+  .whyus-embla__container {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .whyus-embla__slide {
+    flex: 0 0 85%;
+    min-width: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 20px 60px -40px rgba(59, 130, 246, 0.6);
+  }
+
+  .whyus-embla__dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .whyus-embla__dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 9999px;
+    background: rgba(148, 163, 184, 0.4);
+    transition: width 0.2s ease, background 0.2s ease;
+  }
+
+  .whyus-embla__dot.is-active {
+    width: 1.6rem;
+    background: linear-gradient(90deg, #60a5fa, #f97316);
+  }
+
+  .expertise-embla {
+    overflow: hidden;
+    margin: 0 -1.25rem;
+    padding: 0.25rem 1.25rem 0.5rem;
+  }
+
+  .expertise-embla__container {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .expertise-embla__slide {
+    flex: 0 0 88%;
+    min-width: 0;
+    box-shadow: 0 18px 50px -30px rgba(59, 130, 246, 0.4);
+    border-radius: 1.25rem;
+  }
+
+  .expertise-embla__dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .expertise-embla__dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 9999px;
+    background: rgba(148, 163, 184, 0.4);
+    transition: width 0.2s ease, background 0.2s ease;
+  }
+
+  .expertise-embla__dot.is-active {
+    width: 1.6rem;
+    background: linear-gradient(90deg, #60a5fa, #f97316);
+  }
   .animate-hero-blob-1 {
     animation: hero-blob-1 8s ease-in-out infinite;
   }

@@ -1,5 +1,7 @@
 <script setup>
 import { Share2, Search, BarChart3, Target } from 'lucide-vue-next'
+import useEmblaCarousel from 'embla-carousel-vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 
 const services = [
   {
@@ -31,6 +33,45 @@ const services = [
     gradient: 'from-green-500 to-emerald-500',
   },
 ]
+
+const [emblaRef, emblaApi] = useEmblaCarousel({
+  align: 'start',
+  loop: false,
+  containScroll: 'trimSnaps',
+})
+
+const selectedIndex = ref(0)
+const snapCount = ref(0)
+
+const scrollTo = (index) => {
+  if (emblaApi.value) emblaApi.value.scrollTo(index)
+}
+
+const onSelect = () => {
+  if (!emblaApi.value) return
+  selectedIndex.value = emblaApi.value.selectedScrollSnap()
+}
+
+const onInit = () => {
+  if (!emblaApi.value) return
+  snapCount.value = emblaApi.value.scrollSnapList().length
+  onSelect()
+}
+
+onMounted(() => {
+  if (!emblaApi.value) return
+  emblaApi.value.on('init', onInit)
+  emblaApi.value.on('select', onSelect)
+  onInit()
+})
+
+onUnmounted(() => {
+  if (!emblaApi.value) return
+  emblaApi.value.off('init', onInit)
+  emblaApi.value.off('select', onSelect)
+})
+
+const snaps = computed(() => Array.from({ length: snapCount.value }, (_, i) => i))
 </script>
 
 <template>
@@ -54,7 +95,61 @@ const services = [
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-6">
+      <div class="expertise-embla md:hidden" ref="emblaRef">
+        <div class="expertise-embla__container">
+          <div
+            v-for="(service, index) in services"
+            :key="service.title"
+            v-motion
+            class="expertise-embla__slide group relative bg-white rounded-2xl p-8 shadow-lg border border-slate-200 overflow-hidden"
+            :initial="{ opacity: 0, y: 30 }"
+            :visible-once="{ opacity: 1, y: 0 }"
+            :duration="600"
+            :delay="index * 100"
+          >
+            <div
+              class="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-300"
+              :class="`bg-gradient-to-br ${service.gradient}`"
+            />
+
+            <div class="relative z-10">
+              <div
+                class="inline-flex w-14 h-14 rounded-xl items-center justify-center mb-6 shadow-lg"
+                :class="`bg-gradient-to-br ${service.gradient}`"
+              >
+                <component :is="service.icon" class="w-7 h-7 text-white" />
+              </div>
+
+              <h3 class="text-2xl font-bold text-slate-900 mb-2">{{ service.title }}</h3>
+              <p class="text-sm font-medium bg-gradient-to-r bg-clip-text text-transparent mb-4" :class="service.gradient">
+                {{ service.subtitle }}
+              </p>
+              <p class="text-slate-600 leading-relaxed">{{ service.description }}</p>
+
+              <div
+                class="mt-6 inline-flex items-center text-sm font-medium bg-gradient-to-r bg-clip-text text-transparent"
+                :class="service.gradient"
+              >
+                Learn more →
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="expertise-embla__dots md:hidden">
+        <button
+          v-for="dot in snaps"
+          :key="dot"
+          type="button"
+          class="expertise-embla__dot"
+          :class="{ 'is-active': selectedIndex === dot }"
+          @click="scrollTo(dot)"
+          aria-label="Go to slide"
+        />
+      </div>
+
+      <div class="hidden md:grid md:grid-cols-2 gap-6">
         <div
           v-for="(service, index) in services"
           :key="service.title"

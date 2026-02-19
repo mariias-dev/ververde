@@ -1,5 +1,7 @@
 <script setup>
 import { AlertCircle, Target, TrendingUp, Shield } from 'lucide-vue-next'
+import useEmblaCarousel from 'embla-carousel-vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 
 const features = [
   {
@@ -18,13 +20,52 @@ const features = [
     description: 'We treat your advertising spend as if it were our own—with care and precision.',
   },
 ]
+
+const [emblaRef, emblaApi] = useEmblaCarousel({
+  align: 'start',
+  loop: false,
+  containScroll: 'trimSnaps',
+})
+
+const selectedIndex = ref(0)
+const snapCount = ref(0)
+
+const scrollTo = (index) => {
+  if (emblaApi.value) emblaApi.value.scrollTo(index)
+}
+
+const onSelect = () => {
+  if (!emblaApi.value) return
+  selectedIndex.value = emblaApi.value.selectedScrollSnap()
+}
+
+const onInit = () => {
+  if (!emblaApi.value) return
+  snapCount.value = emblaApi.value.scrollSnapList().length
+  onSelect()
+}
+
+onMounted(() => {
+  if (!emblaApi.value) return
+  emblaApi.value.on('init', onInit)
+  emblaApi.value.on('select', onSelect)
+  onInit()
+})
+
+onUnmounted(() => {
+  if (!emblaApi.value) return
+  emblaApi.value.off('init', onInit)
+  emblaApi.value.off('select', onSelect)
+})
+
+const snaps = computed(() => Array.from({ length: snapCount.value }, (_, i) => i))
 </script>
 
 <template>
   <section id="why-us" class="py-24 bg-white relative overflow-hidden">
     <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-50 to-transparent" />
 
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 relative z-10">
       <div
         v-motion
         class="max-w-4xl mx-auto text-center mb-20"
@@ -48,7 +89,7 @@ const features = [
 
       <div
         v-motion
-        class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-12 md:p-16 shadow-2xl"
+        class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-none sm:rounded-3xl p-8 sm:p-12 md:p-16 shadow-2xl -mx-3 sm:mx-0"
         :initial="{ opacity: 0, y: 30 }"
         :visible-once="{ opacity: 1, y: 0 }"
         :duration="800"
@@ -68,23 +109,58 @@ const features = [
           </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8 mt-12">
-          <div
-            v-for="(feature, index) in features"
-            :key="feature.title"
-            v-motion
-            class="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700 hover:border-blue-500/50 transition-all"
-            :initial="{ opacity: 0, y: 20 }"
-            :visible-once="{ opacity: 1, y: 0 }"
-            :duration="600"
-            :delay="400 + index * 100"
-            :hovered="{ scale: 1.05, y: -5 }"
-          >
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-4">
-              <component :is="feature.icon" class="w-6 h-6 text-white" />
+        <div class="mt-12">
+          <div class="whyus-embla md:hidden" ref="emblaRef">
+            <div class="whyus-embla__container">
+              <div
+                v-for="(feature, index) in features"
+                :key="feature.title"
+                v-motion
+                class="whyus-embla__slide bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700"
+                :initial="{ opacity: 0, y: 20 }"
+                :visible-once="{ opacity: 1, y: 0 }"
+                :duration="600"
+                :delay="200 + index * 100"
+              >
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-4">
+                  <component :is="feature.icon" class="w-6 h-6 text-white" />
+                </div>
+                <h4 class="text-xl font-bold text-white mb-3">{{ feature.title }}</h4>
+                <p class="text-slate-400 leading-relaxed">{{ feature.description }}</p>
+              </div>
             </div>
-            <h4 class="text-xl font-bold text-white mb-3">{{ feature.title }}</h4>
-            <p class="text-slate-400 leading-relaxed">{{ feature.description }}</p>
+          </div>
+
+          <div class="whyus-embla__dots md:hidden">
+            <button
+              v-for="dot in snaps"
+              :key="dot"
+              type="button"
+              class="whyus-embla__dot"
+              :class="{ 'is-active': selectedIndex === dot }"
+              @click="scrollTo(dot)"
+              aria-label="Go to slide"
+            />
+          </div>
+
+          <div class="hidden md:grid md:grid-cols-3 md:gap-8">
+            <div
+              v-for="(feature, index) in features"
+              :key="feature.title"
+              v-motion
+              class="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700 hover:border-blue-500/50 transition-all"
+              :initial="{ opacity: 0, y: 20 }"
+              :visible-once="{ opacity: 1, y: 0 }"
+              :duration="600"
+              :delay="400 + index * 100"
+              :hovered="{ scale: 1.05, y: -5 }"
+            >
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-4">
+                <component :is="feature.icon" class="w-6 h-6 text-white" />
+              </div>
+              <h4 class="text-xl font-bold text-white mb-3">{{ feature.title }}</h4>
+              <p class="text-slate-400 leading-relaxed">{{ feature.description }}</p>
+            </div>
           </div>
         </div>
       </div>
