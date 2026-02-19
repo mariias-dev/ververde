@@ -21,7 +21,7 @@ const features = [
 </script>
 
 <template>
-  <section class="py-24 bg-white relative overflow-hidden">
+  <section id="why-us" class="py-24 bg-white relative overflow-hidden">
     <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-50 to-transparent" />
 
     <div class="max-w-7xl mx-auto px-6 relative z-10">

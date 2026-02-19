@@ -10,7 +10,7 @@ const stats = [
 </script>
 
 <template>
-  <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
     <div class="absolute inset-0 overflow-hidden">
       <div
         class="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-hero-blob-1"
@@ -72,6 +72,8 @@ const stats = [
           :duration="800"
         >
           <Button
+            as="a"
+            href="#cta"
             size="lg"
             class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-6 text-lg rounded-full shadow-xl shadow-orange-500/20 transition-all hover:shadow-2xl hover:shadow-orange-500/30 hover:scale-105"
           >
@@ -79,9 +81,11 @@ const stats = [
             <ArrowRight class="ml-2 w-5 h-5" />
           </Button>
           <Button
+            as="a"
+            href="#case-studies"
             size="lg"
             variant="outline"
-            class="border-2 border-slate-600 text-slate-200 hover:bg-slate-800 hover:text-white px-8 py-6 text-lg rounded-full transition-all hover:scale-105"
+            class="border-2 border-slate-600 bg-slate-900/30 text-white hover:bg-slate-800 hover:text-white px-8 py-6 text-lg rounded-full transition-all hover:scale-105"
           >
             View Case Studies
             <TrendingUp class="ml-2 w-5 h-5" />

@@ -34,7 +34,7 @@ const services = [
 </script>
 
 <template>
-  <section class="py-24 bg-slate-50 relative overflow-hidden">
+  <section id="services" class="py-24 bg-slate-50 relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-6">
       <div
         v-motion

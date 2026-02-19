@@ -2,15 +2,15 @@
 import { Linkedin, Twitter, Instagram, Mail } from 'lucide-vue-next'
 
 const navigation = [
-  { name: 'Home', href: '#' },
-  { name: 'Services', href: '#' },
-  { name: 'Case Studies', href: '#' },
-  { name: 'Contact', href: '#' },
+  { name: 'Home', href: '#home' },
+  { name: 'Services', href: '#services' },
+  { name: 'Case Studies', href: '#case-studies' },
+  { name: 'Contact', href: '#cta' },
 ]
 
 const socials = [
   { name: 'LinkedIn', icon: Linkedin, href: '#' },
-  { name: 'Twitter', icon: Twitter, href: '#' },
+  { name: 'X (Twitter)', icon: Twitter, href: '#' },
   { name: 'Instagram', icon: Instagram, href: '#' },
 ]
 

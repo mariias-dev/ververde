@@ -4,9 +4,9 @@ import { TrendingUp, ArrowUpRight } from 'lucide-vue-next'
 const cases = [
   {
     industry: 'E-commerce Brand',
-    result: 'Scaled from £5k to £50k monthly spend',
+    result: 'Scaled from £5k to £50k monthly spend while maintaining a 4.5x ROAS.',
     metric: '4.5x ROAS',
-    description: 'Maintained profitability while scaling ad spend 10x within 6 months.',
+    description: 'Scaled ad spend 10x while keeping performance profitable.',
     gradient: 'from-blue-500 to-cyan-500',
     stats: [
       { label: 'Ad Spend', value: '10x' },
@@ -15,9 +15,9 @@ const cases = [
   },
   {
     industry: 'B2B SaaS',
-    result: 'Reduced Cost Per Lead by 52%',
-    metric: 'Within 60 days',
-    description: 'Complete campaign overhaul with precision targeting and conversion optimization.',
+    result: 'Reduced Cost Per Lead by 52% within the first 60 days of management.',
+    metric: '52% CPL drop',
+    description: 'Precision targeting and conversion optimization to reduce CPL fast.',
     gradient: 'from-purple-500 to-pink-500',
     stats: [
       { label: 'CPL', value: '-52%' },
@@ -26,9 +26,9 @@ const cases = [
   },
   {
     industry: 'Local Services',
-    result: 'Generated 300+ high-quality inquiries',
-    metric: 'Per month',
-    description: 'Dominated competitive UK market using hyper-targeted Google Search campaigns.',
+    result: 'Generated 300+ high-quality inquiries in a competitive UK market using Google Search.',
+    metric: '300+ inquiries',
+    description: 'Hyper-targeted Google Search campaigns to drive consistent demand.',
     gradient: 'from-orange-500 to-red-500',
     stats: [
       { label: 'Inquiries', value: '300+' },
@@ -39,7 +39,7 @@ const cases = [
 </script>
 
 <template>
-  <section class="py-24 bg-slate-900 relative overflow-hidden">
+  <section id="case-studies" class="py-24 bg-slate-900 relative overflow-hidden">
     <div class="absolute inset-0">
       <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-case-blob-1" />
       <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-case-blob-2" />

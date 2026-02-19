@@ -48,7 +48,7 @@ const colorMap = {
 </script>
 
 <template>
-  <section class="py-24 bg-white relative overflow-hidden">
+  <section id="process" class="py-24 bg-white relative overflow-hidden">
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.05),transparent_50%)]" />
 
     <div class="max-w-7xl mx-auto px-6 relative z-10">

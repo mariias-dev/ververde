@@ -1,10 +1,9 @@
 <script setup>
 import { Calendar, ArrowRight } from 'lucide-vue-next'
-import Button from '@/components/ui/Button.vue'
 </script>
 
 <template>
-  <section class="py-24 bg-slate-50 relative overflow-hidden">
+  <section id="cta" class="py-24 bg-slate-50 relative overflow-hidden">
     <div class="max-w-5xl mx-auto px-6">
       <div
         v-motion
@@ -43,14 +42,14 @@ import Button from '@/components/ui/Button.vue'
             :duration="600"
             :delay="400"
           >
-            <Button
-              size="lg"
-              class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-10 py-7 text-lg rounded-full shadow-2xl shadow-orange-500/30 transition-all hover:shadow-3xl hover:shadow-orange-500/40 hover:scale-105"
+            <a
+              href="mailto:ververde_ltd@yahoo.com"
+              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-lg font-medium transition-all bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-10 py-7 shadow-2xl shadow-orange-500/30 hover:shadow-3xl hover:shadow-orange-500/40 hover:scale-105"
             >
               <Calendar class="mr-3 w-6 h-6" />
               Book My Strategy Call
               <ArrowRight class="ml-3 w-6 h-6" />
-            </Button>
+            </a>
           </div>
 
           <div
