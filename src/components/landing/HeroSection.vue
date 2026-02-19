@@ -26,15 +26,12 @@ const stats = [
 
     <div class="relative z-10 max-w-7xl mx-auto px-6 py-20 text-center">
       <div v-motion :initial="{ opacity: 0, y: 30 }" :enter="{ opacity: 1, y: 0 }" :duration="800">
-        <div
-          v-motion
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-8"
-          :initial="{ opacity: 0, scale: 0.8 }"
-          :enter="{ opacity: 1, scale: 1 }"
-          :delay="200"
-        >
-          <Zap class="w-4 h-4" />
-          UK-Based Performance Marketing Agency
+        <div class="mb-6">
+          <div class="text-xs uppercase tracking-[0.25em] text-slate-400">
+            <span class="font-semibold text-slate-200 tracking-[0.35em]">VERVERDE LTD</span>
+            <span class="mx-2 text-slate-600">—</span>
+            UK Performance Marketing Agency
+          </div>
         </div>
 
         <h1
